@@ -1,0 +1,6 @@
+/server
+/static/dist
+node_modules
+.idea
+npm-debug.log
+npm-debug.log.*
