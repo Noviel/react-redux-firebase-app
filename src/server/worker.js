@@ -6,8 +6,6 @@ import sendHtml from './modules/send-html';
 import expressMiddlewares from './modules/express-middlewares';
 import socketIOModule from 'osnova-module-socket.io';
 
-require('../../config/global')(false);
-
 module.exports = (listen) => {
 
   const osnova = OSNOVA({
