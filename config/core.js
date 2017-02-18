@@ -11,8 +11,8 @@ module.exports = {
     assets: './static/'
   },
   host,
-  database,
-  session: {
-    secret: 'VERYSECRETSTRING'
+  modules: {
+    session: false,
+    mongo: false
   }
 };
