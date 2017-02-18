@@ -1,6 +1,6 @@
 {
   "name": "react-redux-firebase-app",
-  "version": "0.40.0",
+  "version": "0.41.0",
   "description": "Simple application built with react, redux and firebase",
   "keywords": [
     "webpack",
