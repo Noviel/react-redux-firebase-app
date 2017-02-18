@@ -82,6 +82,15 @@ function getAssets() {
       assets.other.push(fullName)
   }
 
+  assets.scripts.sort((left, right) => {
+    if (left.match(/index/) || right.match(/manifest/)) return 1;
+    if (left.match(/manifest/) || right.match(/index/)) return -1;
+    return 0;
+  });
+
+  console.log(assets.scripts);
+
+
   return assets;
 }
 

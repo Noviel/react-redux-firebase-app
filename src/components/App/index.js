@@ -1,6 +1,6 @@
 // Created by snov on 16.02.2017.
 //
-// Application component
+// Application helper component.
 //
 //=========================================================================
 
@@ -8,13 +8,14 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import config from '../../../config/app';
 
+import FirebaseApp from '../Firebase';
+
 export default class App extends Component {
   render() {
     return (
-      <div className='app'>
+      <div className='app' id='app'>
         <Helmet {...config.head}/>
-        <div>I am rendered on the server! [PID={process.pid}]</div>
-        <div id='counter'></div>
+        <FirebaseApp/>
       </div>
     );
   }
