@@ -1,6 +1,6 @@
 // Created by snov on 18.02.2017.
 //
-// ABOUT THIS FILE
+// Firebase!
 //
 //=========================================================================
 
@@ -14,4 +14,7 @@ const config = {
   messagingSenderId: "1083949478942"
 };
 
-const app = firebase.initializeApp(config);
+export let app = firebase.initializeApp(config);
+export let Firebase = firebase;
+export const auth = firebase.auth();
+export const database = firebase.database();
