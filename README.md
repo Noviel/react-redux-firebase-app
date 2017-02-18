@@ -4,6 +4,7 @@
 Simple application built with react, redux and firebase. 
 Based on [osnova-react-environment](https://github.com/Noviel/osnova-react-environment).
 
+Live [demo on heroku](https://react-redux-firebase-app.herokuapp.com).
 ## Features
 
  - ES6+ support
