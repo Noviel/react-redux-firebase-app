@@ -129,7 +129,7 @@ export default class FirebaseApp extends Component {
     } else {
       actionElement = (
         <div>
-          <h1>Login to get access to database.</h1>
+          <h1>Login to get access to the database!</h1>
           <button onClick={authenticate}>Enter with Google Account</button>
         </div>
       )
