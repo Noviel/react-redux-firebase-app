@@ -1,6 +1,6 @@
 {
   "name": "osnova-react-environment",
-  "version": "0.26.0",
+  "version": "0.30.0",
   "description": "Modern ready-to-use environment for quick start of a new react application development.",
   "keywords": [
     "webpack",
