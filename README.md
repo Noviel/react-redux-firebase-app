@@ -1,37 +1,33 @@
-#OSNOVA-REACT-ENVIRONMENT
+#react-redux-firebase-app
 
-##bI?
-Modern ready-to-use environment for quick start of a new react application development.
+## bI?
+Simple application built with react, redux and firebase. 
+Based on [osnova-react-environment](https://github.com/Noviel/osnova-react-environment).
 
-##Features
+## Features
 
  - ES6+ support
  - Building either a client and a server with transparently configured Webpack
  - Linting on the build stage that enforces best code writing practices
  - Server side rendering with Webpack-React-Redux stack
- - Extendable and configurable [osnova](https://github.com/Noviel/osnova) based server
  
-##Components 
+## Components 
 
- - [react](https://facebook.github.io/react/)
- - [redux](http://redux.js.org/)
- - [webpack](https://webpack.js.org/)
- - [postcss](http://postcss.org/)
- - [eslint](http://eslint.org/)
- - [osnova](https://github.com/Noviel/osnova)
- - [osnova-cluster-launcher](https://github.com/Noviel/osnova-cluster-launcher)
+[osnova-react-environment](https://github.com/Noviel/osnova-react-environment#components) components and:
+
+ - [firebase](https://www.npmjs.com/package/firebase)
  
-##Installation
+## Installation
 
-###Via git:
+### Via git:
 
-    git clone git@github.com:Noviel/osnova-react-environment.git <your-application-name>
+    git clone git@github.com:Noviel/react-redux-firebase-app.git <your-application-name>
     
-###Or download:
+### Or download:
 
-    https://github.com/Noviel/osnova-react-environment/archive/master.zip
+    https://github.com/Noviel/react-redux-firebase-app/archive/master.zip
     
-##Prepare
+## Prepare
 - Go to `<your-application-name>` root directory.
 - Delete `.git` directory.
 - Set in `package.json` information about your application.
@@ -40,23 +36,10 @@ Modern ready-to-use environment for quick start of a new react application devel
 Note that build folders are excluded from git. You need to
 remove `/server` and `/static/dist` from `.gitignore` to push built version.
 
-##Launching
+## Launching
 
 ```sh
 npm run build
 npm run start
 start http://localhost:3322
 ```
-
-##Structure
-
-  Coming soon...
-  
-##Scripts
-  
-  Coming soon...
-
-
-##Testing
-
-  Coming soon...
