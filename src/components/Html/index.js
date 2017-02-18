@@ -7,8 +7,10 @@
 import React, { PropTypes } from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import serialize from 'serialize-javascript';
+import { SERVER_STORE } from '../../redux/store';
 
-export default function Html({ assets, component/*, store */}) {
+export default function Html({ assets, component, store, serverStoreName = SERVER_STORE }) {
   const content = component ? renderToString(component) : '';
   const head = Helmet.rewind();
 
@@ -32,6 +34,8 @@ export default function Html({ assets, component/*, store */}) {
       </head>
       <body>
         <div id='content' dangerouslySetInnerHTML={{__html: content}}/>
+
+        <script dangerouslySetInnerHTML={{__html: `window.${serverStoreName}=${serialize(store.getState())};`}} charSet='UTF-8'/>
         {
           Object.keys(assets.scripts).map((script, key) =>
             <script src={assets.scripts[script]} key={key}/>)
@@ -44,5 +48,6 @@ export default function Html({ assets, component/*, store */}) {
 Html.propTypes = {
   assets: PropTypes.object,
   component: PropTypes.node,
-  store: PropTypes.object
+  store: PropTypes.object,
+  serverStoreName: PropTypes.string
 };

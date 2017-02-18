@@ -1,7 +1,7 @@
 // Created by snov on 03.02.2017.
 "use strict";
 
-const { host, database } = require('./target');
+const { host } = require('./target');
 
 module.exports = {
   paths: {

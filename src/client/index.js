@@ -4,12 +4,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import io from 'socket.io-client';
 import App from '../components/App';
+import createStore, { SERVER_STORE } from '../redux/store';
 
-//import createStore from '../redux/store';
+import env from '../../config/global';
 
-import defineGlobals from '../../config/global';
+env(true);
 
-defineGlobals(true);
+console.log(env.getEnvString());
 
 let socket = null;
 
@@ -18,9 +19,11 @@ const initSocket = () => {
   socket.emit('client-message', 'Priffki :****');
 };
 
+const store = createStore(window[SERVER_STORE]);
+
 document.addEventListener('DOMContentLoaded', () => {
   initSocket();
 
-  render(<App />,
+  render(<App store={store}/>,
     document.getElementById('content'));
 });
