@@ -3,6 +3,7 @@
 // Webpack configurator
 //
 //=========================================================================
+
 const path = require('path');
 const fs = require('fs');
 
@@ -87,9 +88,6 @@ function getAssets() {
     if (left.match(/manifest/) || right.match(/index/)) return -1;
     return 0;
   });
-
-  console.log(assets.scripts);
-
 
   return assets;
 }

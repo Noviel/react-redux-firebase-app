@@ -2,12 +2,13 @@
 
 import OSNOVA from 'osnova';
 import { stringsToObjectKeys } from '../utils/core';
+import { getEnvString } from '../../config/global';
 
 // creating a copy of a default core options, because we don't want to modify the original
 const masterCoreOpts = {...require('../../config/core')};
 
 // we dont need these core modules on the master process
-const modules = stringsToObjectKeys(['webserver', 'session'], false);
+const modules = stringsToObjectKeys(['webserver'], false);
 masterCoreOpts.modules = {...masterCoreOpts.modules, ...modules};
 
 module.exports = (listen) => {
@@ -20,6 +21,6 @@ module.exports = (listen) => {
   });
 
   osnova.start(() => {
-    console.log(`Hello from master! [pid=${process.pid}]`);
+    console.log(`Hello from master! [pid=${process.pid}] [ENV=[${getEnvString()}]]`);
   });
 };

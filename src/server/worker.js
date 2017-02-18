@@ -2,16 +2,18 @@
 
 import OSNOVA from 'osnova';
 import socketEvents from './modules/socket-events';
-import sendHtml from './modules/send-html';
+import serverRendering from './modules/server-rendering';
 import expressMiddlewares from './modules/express-middlewares';
 import socketIOModule from 'osnova-module-socket.io';
+
+const env = require('../../config/global');
 
 module.exports = (listen) => {
 
   const osnova = OSNOVA({
     modules: [
       expressMiddlewares(),
-      sendHtml(),
+      serverRendering(),
       socketIOModule(),
       socketEvents()
     ],
@@ -20,6 +22,6 @@ module.exports = (listen) => {
   });
 
   osnova.start(() => {
-    console.log(`Hello from worker! [pid=${process.pid}]`);
+    console.log(`Hello from worker! [pid=${process.pid}] [ENV=[${env.getEnvString()}]]`);
   });
 };
