@@ -1,15 +1,14 @@
 {
-  "name": "osnova-react-environment",
+  "name": "react-redux-firebase-app",
   "version": "0.30.0",
-  "description": "Modern ready-to-use environment for quick start of a new react application development.",
+  "description": "Simple application built with react, redux and firebase",
   "keywords": [
     "webpack",
     "babel",
-    "es6",
+    "firebase",
     "react",
     "redux",
-    "boilerplate",
-    "osnova"
+    "boilerplate"
   ],
   "author": "Aleksandr Snov <snov.contact@gmail.com>",
   "license": "MIT",
@@ -17,7 +16,7 @@
   "readme": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Noviel/osnova-react-environment.git"
+    "url": "https://github.com/Noviel/react-redux-firebase-app.git"
   },
   "scripts": {
     "build": "npm run build-server && npm run build-client",
