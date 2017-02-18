@@ -8,10 +8,13 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducer';
 
-const configureStore = preloadedState => createStore(
-  rootReducer,
-  preloadedState,
-  applyMiddleware(thunk)
-);
+export default function(preloadedState) {
+  return createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(thunk)
+  );
+}
 
-export default configureStore;
+// Name of the property by which store data will be available on the client.
+export const SERVER_STORE = '__SERVER_STORE__';

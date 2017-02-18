@@ -5,6 +5,8 @@
 //=========================================================================\
 
 import { combineReducers } from 'redux';
+import logger from './modules/logger';
 
 export default combineReducers({
+  messages: logger
 });

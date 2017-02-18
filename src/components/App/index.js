@@ -7,15 +7,22 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import config from '../../../config/app';
-
+import { Provider } from 'react-redux';
 import FirebaseApp from '../Firebase';
 
 export default class App extends Component {
+
+  static propTypes = {
+    store: React.PropTypes.object.isRequired
+  }
+
   render() {
     return (
-      <div className='app' id='app'>
+      <div>
         <Helmet {...config.head}/>
-        <FirebaseApp/>
+        <Provider store={this.props.store}>
+          <FirebaseApp/>
+        </Provider>
       </div>
     );
   }
