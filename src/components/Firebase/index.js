@@ -10,7 +10,7 @@
 import React, { Component } from 'react';
 import { Firebase as firebase, auth, database } from '../../firebase';
 import Logger from '../Logger';
-import { addMessage } from '../../redux/modules/logger';
+import { addMessage, clear } from '../../redux/modules/logger';
 import { login, logout } from '../../redux/modules/auth';
 import { connect } from 'react-redux';
 
@@ -21,7 +21,6 @@ function authenticate() {
   auth.signInWithPopup(provider).then(function(result) {
     if (result.credential) {
       const token = result.credential.accessToken;
-      console.log(result.credential);
     }
   }).catch(function(error) {
     const { message } = error;
@@ -70,17 +69,23 @@ export default class FirebaseApp extends Component {
 
   componentDidMount() {
 
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user.id);
-        this.props.dispatch(login(user.displayName, user.id));
-        this.handleUserChange(user.displayName);
-      }
-    });
-
     messagesRef.on('child_added', (snapshot) => {
       const val = snapshot.val();
       this.props.dispatch(addMessage(`${val.user}: ${val.message}`));
+    });
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.props.dispatch(login(user.displayName, user.id));
+        this.handleUserChange(user.displayName);
+        messagesRef.on('value', (snapshot) => {
+          this.props.dispatch(clear());
+          const data = snapshot.val();
+          Object.keys(data).forEach(val => {
+            this.props.dispatch(addMessage(`${data[val].user}: ${data[val].message}`));
+          });
+        });
+      }
     });
   }
 
@@ -111,10 +116,11 @@ export default class FirebaseApp extends Component {
 
   handleSendMessage = (e) => {
     e.preventDefault()
+    sendMessage(this.props.user, this.state[valueProp]);
+
     this.setState({
       [valueProp]: ''
     });
-    sendMessage(user, this.state[valueProp]);
   }
 
   render() {
@@ -125,21 +131,25 @@ export default class FirebaseApp extends Component {
         (<div className='jumbotron'>
           <h3>Hello, {user}!</h3>
           <p>Enter your message: </p>
-          <div className="input-group">
+          <form onSubmit={this.handleSendMessage} className="input-group">
             <input className="form-control" onChange={this.handleInputChange} value={this.state[valueProp]} name={valueProp}/>
             <span className="input-group-btn">
-              <button className="btn btn-default" type="button">Send</button>
+              <button className="btn btn-default" type="button" onClick={this.handleSendMessage}>Send</button>
             </span>
-          </div>
+          </form>
           <p>
           <button className="btn btn-primary" onClick={this.handleLogout}>Logout</button>
           </p>
+
+          <Logger/>
         </div>);
     } else {
       actionElement = (
         <div className='jumbotron'>
           <h3>Login to get access to the database!</h3>
-          <button className="btn btn-primary" onClick={authenticate}>Enter with Google Account</button>
+          <p>
+            <button className="btn btn-primary" onClick={authenticate}>Enter with Google Account</button>
+          </p>
         </div>
       )
     }
@@ -148,7 +158,6 @@ export default class FirebaseApp extends Component {
       <div className='container'>
         <div className='page-header'><h1>React Redux Firebase demo</h1></div>
         {actionElement}
-        <Logger/>
       </div>
     );
   }
