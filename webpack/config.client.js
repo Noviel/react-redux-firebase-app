@@ -31,9 +31,11 @@ module.exports = configure({
   features: [
     setEntry({
       __dev__: { vendor },
-      bootstrap: 'bootstrap-loader/lib/bootstrap.loader?extractStyles&' +
-      `configFilePath=${bootstrapConfig}` + '!bootstrap-loader/no-op.js',
-      main: './src/client/index.js'
+      main: [
+        'bootstrap-loader/lib/bootstrap.loader?extractStyles&' + `configFilePath=${bootstrapConfig}` + '!bootstrap-loader/no-op.js',
+        'font-awesome-webpack!./src/theme/font-awesome.config.js',
+        './src/client/index.js'
+      ]
     }),
     setRules([eslintBabelRule, postCss.rule, imagesRule, fontsRule])
   ]

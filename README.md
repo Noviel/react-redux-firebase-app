@@ -20,6 +20,7 @@ Live [demo on heroku](https://react-redux-firebase-app.herokuapp.com).
  - [babel](https://babeljs.io/)
  - [webpack](https://webpack.js.org/)
  - [bootstrap 4](https://v4-alpha.getbootstrap.com/)
+ - [font awesome](http://fontawesome.io/)
  - [postcss](http://postcss.org/)
  - [eslint](http://eslint.org/)
  - [osnova](https://github.com/Noviel/osnova)

@@ -32,7 +32,7 @@ class Logger extends Component {
     const messages = this.props.messages;
     return (
       <div>
-        {messages ? messages.map((m,i) => <div className="alert alert-success" key={i}>{m}</div>) : null }
+        {messages ? messages.map((m,i) => <div className="alert alert-success" key={i}><i className="fa fa-envelope-open"/> {m}</div>) : null }
       </div>
     );
   }
