@@ -28,7 +28,7 @@
     "watch": "concurrently -k \"npm run watch-client\" \"npm run watch-server\"",
     "watch-client": "better-npm-run watch-client",
     "watch-server": "better-npm-run watch-server",
-    "nodemon": "nodemon server/main.js --config dev/nodemon.json",
+    "nodemon": "nodemon server/main.js --config nodemon.json",
     "major-release": "npm --no-git-tag-version version major && npm publish",
     "minor-release": "npm --no-git-tag-version version minor && npm publish",
     "patch-release": "npm --no-git-tag-version version patch && npm publish",
@@ -38,10 +38,10 @@
   },
   "betterScripts": {
     "build-server": {
-      "command": "webpack --config dev/webpack.config.server.js"
+      "command": "webpack --config webpack/config.server.js"
     },
     "build-client": {
-      "command": "webpack --config dev/webpack.config.client.js"
+      "command": "webpack --config webpack/config.client.js"
     },
     "watch-server": {
       "command": "better-npm-run build-server --watch --colors"
@@ -93,6 +93,8 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "babel-register": "^6.22.0",
+    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap-loader": "^2.0.0-beta.21",
     "chokidar": "^1.6.1",
     "clean-webpack-plugin": "^0.1.15",
     "concurrently": "^3.1.0",
@@ -101,15 +103,21 @@
     "eslint-loader": "^1.6.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.9.0",
+    "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "2.2.0",
     "file-loader": "^0.10.0",
+    "imports-loader": "^0.7.0",
     "jest": "^18.1.0",
+    "node-sass": "^4.5.0",
     "postcss-autoreset": "^1.2.1",
     "postcss-import": "^9.1.0",
     "postcss-initial": "^1.5.3",
     "postcss-loader": "^1.2.2",
+    "postcss-scss": "^0.4.1",
     "postcss-use": "^2.3.0",
     "precss": "^1.4.0",
+    "resolve-url-loader": "^2.0.0",
+    "sass-loader": "^6.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "2.2.0",

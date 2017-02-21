@@ -11,11 +11,19 @@ Live [demo on heroku](https://react-redux-firebase-app.herokuapp.com).
  - Building either a client and a server with transparently configured Webpack
  - Linting on the build stage that enforces best code writing practices
  - Server side rendering with Webpack-React-Redux stack
+ - Styling with bootstrap
  
 ## Components 
 
-[osnova-react-environment](https://github.com/Noviel/osnova-react-environment#components) components and:
-
+ - [react](https://facebook.github.io/react/)
+ - [redux](http://redux.js.org/)
+ - [babel](https://babeljs.io/)
+ - [webpack](https://webpack.js.org/)
+ - [bootstrap 4](https://v4-alpha.getbootstrap.com/)
+ - [postcss](http://postcss.org/)
+ - [eslint](http://eslint.org/)
+ - [osnova](https://github.com/Noviel/osnova)
+ - [osnova-cluster-launcher](https://github.com/Noviel/osnova-cluster-launcher)
  - [firebase](https://www.npmjs.com/package/firebase)
  
 ## Installation

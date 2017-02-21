@@ -3,7 +3,9 @@
 import React from 'react';
 import { render } from 'react-dom';
 import io from 'socket.io-client';
-import App from '../components/App';
+import Wrapper from '../helpers/AppWrapper';
+import App from '../components/Firebase';
+import { head } from '../../config/app';
 import createStore, { SERVER_STORE } from '../redux/store';
 
 import env from '../../config/global';
@@ -24,6 +26,6 @@ const store = createStore(window[SERVER_STORE]);
 document.addEventListener('DOMContentLoaded', () => {
   initSocket();
 
-  render(<App store={store}/>,
+  render(<Wrapper App={App} head={head} store={store}/>,
     document.getElementById('content'));
 });

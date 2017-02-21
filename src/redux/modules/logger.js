@@ -30,9 +30,7 @@ export function clear() {
   }
 }
 
-const initialState = [];
-
-export default createReducer(initialState, {
+export default createReducer([], {
 
   [ACTIONS.ADD_MESSAGE](state, action) {
     return [...state, action.message];

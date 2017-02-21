@@ -13,7 +13,7 @@ module.exports = function (target, opts) {
   opts = opts || {};
 
   let rule = {
-    test: opts.test || /\.css$/,
+    test: opts.test || /\.s?css$/,
     exclude: opts.exclude || /node_modules/
   };
 
@@ -23,7 +23,7 @@ module.exports = function (target, opts) {
   };
 
   const postCssLoader = {
-    loader: 'postcss-loader',
+    loader: 'postcss-loader?parser=postcss-scss',
     options: opts.postcss || require('./config')
   };
 
