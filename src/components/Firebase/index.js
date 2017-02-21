@@ -156,7 +156,8 @@ export default class FirebaseApp extends Component {
 
     return (
       <div className='container'>
-        <div className='page-header'><h1>React Redux Firebase demo</h1></div>
+       <div className='page-header'><h1>React Redux Firebase demo</h1></div>
+        <h4><a href='https://github.com/Noviel/react-redux-firebase-app/tree/dev'>Source code on Github</a></h4>
         {actionElement}
       </div>
     );
