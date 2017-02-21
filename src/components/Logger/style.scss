@@ -1,0 +1,8 @@
+$font: Helvetica, sans-serif;
+$primary-color: #333;
+$secondary-color: darkred;
+
+.badge {
+    border: 2px $primary-color solid;
+    background: $secondary-color;
+}

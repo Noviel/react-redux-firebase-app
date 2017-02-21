@@ -6,8 +6,7 @@
 
 const path = require('path');
 const fs = require('fs');
-
-const config = require('./config');
+const config = require('./paths');
 const deepmerge = require('deepmerge');
 
 function flatten(arr) {
@@ -32,6 +31,14 @@ const onlyProductionPlugin = (plugins, isProduction) => {
   isProduction = defaultProductionCheck(isProduction);
 
   if (!plugins || !isProduction) return EmptyPlugin;
+
+  return flatten(plugins);
+};
+
+const onlyDevPlugin = (plugins, isProduction) => {
+  isProduction = defaultProductionCheck(isProduction);
+
+  if (!plugins || isProduction) return EmptyPlugin;
 
   return flatten(plugins);
 };
@@ -83,9 +90,12 @@ function getAssets() {
       assets.other.push(fullName)
   }
 
+  const manifestRegEx = /manifest/,
+    mainRegEx = /main/;
+
   assets.scripts.sort((left, right) => {
-    if (left.match(/index/) || right.match(/manifest/)) return 1;
-    if (left.match(/manifest/) || right.match(/index/)) return -1;
+    if (left.match(mainRegEx) || right.match(manifestRegEx)) return 1;
+    if (left.match(manifestRegEx) || right.match(mainRegEx)) return -1;
     return 0;
   });
 
@@ -141,6 +151,7 @@ module.exports = {
   configure,
   getAssets,
   onlyProductionPlugin,
+  onlyDevPlugin,
   conditionalEntry,
   flatten,
 
@@ -153,7 +164,7 @@ module.exports = {
   setRules: (args) => () => {
     return {
       module: {
-        rules: args
+        rules: flatten(args)
       }
     }
   }

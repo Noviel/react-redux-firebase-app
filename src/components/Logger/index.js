@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+//import styles from './style.scss';
 
 /* eslint-disable no-unused-vars */
 const mapStateToProps = (state, ownProps) => {
@@ -31,7 +32,7 @@ class Logger extends Component {
     const messages = this.props.messages;
     return (
       <div>
-        {messages ? messages.map((m,i) => <div key={i}>{m}</div>) : null }
+        {messages ? messages.map((m,i) => <div className="alert alert-success" key={i}>{m}</div>) : null }
       </div>
     );
   }

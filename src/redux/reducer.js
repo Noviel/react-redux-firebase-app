@@ -6,7 +6,9 @@
 
 import { combineReducers } from 'redux';
 import logger from './modules/logger';
+import auth from './modules/auth';
 
 export default combineReducers({
-  messages: logger
+  messages: logger,
+  auth
 });

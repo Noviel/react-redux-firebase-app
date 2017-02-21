@@ -1,0 +1,43 @@
+{
+  "bootstrapVersion": 4,
+  "styleLoaders": ["style", "css", "postcss", "sass"],
+  "preBootstrapCustomizations": "variables.scss",
+  "mainSass": "bootstrap.overrides.scss",
+
+  "styles": {
+    "mixins": true,
+    "normalize": true,
+    "print": true,
+    "dropdown": true,
+    "type": true,
+    "code": true,
+    "grid": true,
+    "tables": true,
+    "forms": true,
+    "buttons": true,
+    "button-group": true,
+    "input-group": true,
+    "nav": true,
+    "navbar": true,
+    "breadcrumb": true,
+    "pagination": true,
+    "badge": true,
+    "jumbotron": true,
+    "alert": true,
+    "progress": true,
+    "media": true,
+    "list-group": true,
+    "responsive-embed": true,
+    "close": true,
+    "modal": true,
+    "tooltip": true,
+    "popover": true,
+    "carousel": true,
+    "utilities": true
+  },
+ 
+  "scripts": {
+    "alert": true,
+    "button": true
+  }
+}

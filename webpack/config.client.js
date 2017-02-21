@@ -11,26 +11,31 @@ const ManifestPlugin = require('webpack-assets-manifest');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackChunkHash = require('webpack-chunk-hash');
 
-const eslintBabelRule = require('./webpack/features/eslint-babel');
-const imagesRule = require('./webpack/features/images');
-const postCss = require('./webpack/features/postcss')('client');
-const productionPlugins = require('./webpack/features/production-plugins');
-const { configure, onlyProductionPlugin, setEntry, setRules, flatten } = require('./webpack-utils');
+const eslintBabelRule = require('./features/eslint-babel');
+const imagesRule = require('./features/images');
+const fontsRule = require('./features/load-fonts');
+const postCss = require('./features/postcss')('client');
+const productionPlugins = require('./features/production-plugins');
+const { configure, onlyProductionPlugin, onlyDevPlugin, setEntry, setRules, flatten } = require('./utils');
 
-const config = require('./config');
+const config = require('./paths');
 const rootPath = config.paths.absolute.root;
 const assetsPath = config.paths.output.client;
 const vendor = ['react', 'react-dom'];
+
+const bootstrapConfig = path.resolve(rootPath, './src/theme/.bootstraprc.json')
 
 module.exports = configure({
   isProduction: process.env.NODE_ENV === 'production',
 
   features: [
     setEntry({
-      index: './src/client/index.js',
-      __prod__: { vendor }
+      __dev__: { vendor },
+      bootstrap: 'bootstrap-loader/lib/bootstrap.loader?extractStyles&' +
+      `configFilePath=${bootstrapConfig}` + '!bootstrap-loader/no-op.js',
+      main: './src/client/index.js'
     }),
-    setRules([eslintBabelRule, postCss.rule, imagesRule])
+    setRules([eslintBabelRule, postCss.rule, imagesRule, fontsRule])
   ]
 }, {
   devtool: 'source-map',
@@ -40,6 +45,10 @@ module.exports = configure({
     path: assetsPath,
     chunkFilename: '[name].[chunkhash].js',
     publicPath: '/dist/'
+  },
+
+  node: {
+    fs: 'empty'
   },
 
   resolve: {
@@ -62,11 +71,6 @@ module.exports = configure({
     // be flattened outside, because webpack needs flat array of plugins.
     // That's why we use `flatten`.
     onlyProductionPlugin([
-      new webpack.optimize.CommonsChunkPlugin({
-        name: ['vendor', 'manifest'],
-        filename: '[name].[chunkhash].js',
-        minChunks: ({ resource }) => /node_modules/.test(resource)
-      }),
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: '"production"'
@@ -74,6 +78,13 @@ module.exports = configure({
       }),
       productionPlugins
     ]),
+
+    // same for onlyDevPlugin()
+    onlyDevPlugin([new webpack.optimize.CommonsChunkPlugin({
+      name: ['vendor', 'manifest'],
+      filename: '[name].[chunkhash].js',
+      minChunks: ({ resource }) => /node_modules/.test(resource)
+    })]),
 
     postCss.plugin,
 
